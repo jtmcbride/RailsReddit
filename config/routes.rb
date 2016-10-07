@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :posts, only: [:show, :edit, :update] do
     resources :comments, only: [:new, :edit]
   end
-  resource :comments, only: [:create, :update, :destroy]
+  resources :comments, only: [:create, :update, :destroy, :show]
   root to: 'subs#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

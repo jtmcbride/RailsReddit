@@ -31,7 +31,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(comments: :replies).find(params[:id])
+    @comments = @post.comments.where(parent_comment_id: nil)
   end
 
   private

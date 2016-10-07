@@ -4,6 +4,10 @@ class CommentsController < ApplicationController
 
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+  end
+
 
   def create
     @comment = Comment.new(comment_params)
@@ -18,6 +22,6 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, :post_id)
+    params.require(:comment).permit(:content, :post_id, :parent_comment_id)
   end
 end
