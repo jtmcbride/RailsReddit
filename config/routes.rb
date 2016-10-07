@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   resources :subs do
     resource :post, only: [:new, :create]
   end
-  resources :posts, only: [:show, :edit, :update]
+  resources :posts, only: [:show, :edit, :update] do
+    resources :comments, only: [:new, :edit]
+  end
+  resource :comments, only: [:create, :update, :destroy]
   root to: 'subs#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

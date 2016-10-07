@@ -1,3 +1,8 @@
 <h1><%= @sub.title %></h1>
 <h3><%= @sub.description %></h3>
 <p>Moderator: <%= @sub.moderator.username %></p>
+<ul>
+	<% @posts.each do |post| %>
+		<li><%= link_to post.title, post_url(post) %></li>
+	<% end %>
+</ul>

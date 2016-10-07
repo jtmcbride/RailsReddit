@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  password_digest :string           not null
+#  session_token   :string           not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 
 
 class User < ActiveRecord::Base
@@ -8,6 +20,7 @@ class User < ActiveRecord::Base
   attr_reader :password
   has_many :sub, foreign_key: :moderator_id
   has_many :posts
+  has_many :comments
 
   def self.find_by_creds(username, pw)
     user = User.find_by(username: username)
