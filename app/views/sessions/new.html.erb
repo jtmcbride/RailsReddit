@@ -1,0 +1,8 @@
+<h1>Login</h1>
+<form action="<%= session_url %>" method="post" accept-charset="utf-8">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token  %>">
+	<input  name="user[username]" placeholder="Username">
+	<input  name="user[password]" placeholder="Password" type="password">
+	<button>Submit</button>
+</form>
+<%= link_to("Sign Up", new_user_url ) %>
