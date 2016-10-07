@@ -2,7 +2,7 @@
 		) %></h4><p> <%= comment.created_at %>
 <p><%= comment.content %></p>
 <ul>
-	<% comment.replies.each do |rep| %>
+	<% @comments_by_parent[comment.id].each do |rep| %>
 		<%= render 'comments/comment', comment: rep %>
 	<% end %>
 </ul>
