@@ -1,0 +1,13 @@
+<h1>Edit Post: <%= @post.title %> </h1>
+<form action="<%= post_url %>" method="post" accept-charset="utf-8">
+	<input type="hidden" name="_method" value="patch">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token  %>">
+	<input  name="post[title]" placeholder="Title" value="<%= @post.title %>">
+	<input name="post[url]" placeholder="URL" value="<%= @post.url %>">
+	<textarea name="post[content]"><%= @post.content  %></textarea>
+	<h3>Cross Post to Other Subs</h3>
+	<% @subs.each do |sub| %>
+		  <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id  %>" <%= "checked" if @post.subs.include?(sub) %>> <%= sub.title  %> <br />
+	  <% end %>
+	<button>Submit</button>
+</form>

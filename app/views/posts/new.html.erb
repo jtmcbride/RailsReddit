@@ -1,0 +1,16 @@
+<h1>Create Post</h1>
+<form action="<%= sub_post_url %>" method="post" accept-charset="utf-8">
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token  %>">
+	<input  name="post[title]" placeholder="Title"> <br />
+	<input name="post[url]" placeholder="URL"> <br />
+	<label for="post[content]">Content</label> <br />
+	<textarea name="post[content]"></textarea> <br />
+	<h3>Cross Post to Other Subs</h3>
+	<input type="hidden" name="post[sub_ids][]" value="<%= params[:sub_id] %>">
+	<% @subs.each do |sub| %>
+			<% unless sub.id == params[:sub_id].to_i  %>
+			  <input type="checkbox" name="post[sub_ids][]" value="<%= sub.id  %>"> <%= sub.title  %> <br />
+		  <% end %>
+	  <% end %>
+	<button>Submit</button>
+</form>
