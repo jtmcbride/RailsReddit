@@ -4,7 +4,7 @@
 <%= button_to("Upvote", upvote_comment_url(comment)) %>
 <%= button_to("Downvote", downvote_comment_url(comment)) %>
 <ul>
-	<% @comments_by_parent[comment.id].each do |rep| %>
+	<% @comments_by_parent[comment.id].sort { |a,b| b.score <=> a.score }.each do |rep| %>
 		<%= render 'comments/comment', comment: rep %>
 	<% end %>
 </ul>

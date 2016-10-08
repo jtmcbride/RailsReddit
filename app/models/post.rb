@@ -25,9 +25,21 @@ class Post < ActiveRecord::Base
 
   def comments_by_parent_id
     comments_by_parent = Hash.new { |h,k| h[k] = []}
-    self.comments.includes(:author).each do |comment|
+    self.comments.includes(:author, :votes).each do |comment|
       comments_by_parent[comment.parent_comment_id] << comment
     end
     comments_by_parent
+  end
+
+  def upvote
+    self.votes.create(value: 1)
+  end
+
+  def downvote
+    self.votes.create(value: -1)
+  end
+
+  def score
+    self.votes.inject(0) { |memo, vote| memo += vote.value }
   end
 end

@@ -35,10 +35,16 @@ class PostsController < ApplicationController
     @comments_by_parent = @post.comments_by_parent_id
   end
 
-  def upvote
+   def upvote
+    post = Post.find(params[:id])
+    post.upvote
+    redirect_to request.referrer
   end
 
   def downvote
+    post = Post.find(params[:id])
+    post.downvote
+    redirect_to request.referrer
   end
 
   private

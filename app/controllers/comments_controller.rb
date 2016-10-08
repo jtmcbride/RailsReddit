@@ -22,13 +22,13 @@ class CommentsController < ApplicationController
   def upvote
     comment = Comment.find(params[:id])
     comment.upvote
-    redirect_to post_url(comment.post)
+    redirect_to request.referrer
   end
 
   def downvote
     comment = Comment.find(params[:id])
     comment.downvote
-    redirect_to post_url(comment.post)
+    redirect_to request.referrer
   end
 
 

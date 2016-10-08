@@ -4,7 +4,10 @@
 <h3>Posts</h3>
 <%= link_to("New Post", new_sub_post_url(@sub) ) %>
 <ul>
-	<% @posts.each do |post| %>
+	<% @posts.sort { |a,b| b.score <=> a.score }.each do |post| %>
+		<strong>Score: <%= post.score %></strong><br/>
 		<li><%= link_to post.title, post_url(post) %></li>
+		<%= button_to "Upvote", upvote_post_url(post) %>
+		<%= button_to "Downvote", downvote_post_url(post) %>
 	<% end %>
 </ul>
