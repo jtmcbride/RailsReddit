@@ -1,6 +1,8 @@
 <h4><%= link_to comment.author.username, comment_url(comment
 		) %></h4><p> <%= comment.created_at %>
-<p><%= comment.content %></p>
+<p><strong>Score: <%= comment.score %></strong><br/><%= comment.content %></p>
+<%= button_to("Upvote", upvote_comment_url(comment)) %>
+<%= button_to("Downvote", downvote_comment_url(comment)) %>
 <ul>
 	<% @comments_by_parent[comment.id].each do |rep| %>
 		<%= render 'comments/comment', comment: rep %>

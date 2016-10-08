@@ -6,8 +6,18 @@ Rails.application.routes.draw do
   end
   resources :posts, only: [:show, :edit, :update] do
     resources :comments, only: [:new, :edit]
+    member do
+      post 'downvote'
+      post 'upvote'
+    end
   end
-  resources :comments, only: [:create, :update, :destroy, :show]
+  resources :comments, only: [:create, :update, :destroy, :show] do
+    member do
+      post 'downvote'
+      post 'upvote'
+    end
+  end
+  resource :vote, only: [:create, :destroy]
   root to: 'subs#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -35,6 +35,12 @@ class PostsController < ApplicationController
     @comments_by_parent = @post.comments_by_parent_id
   end
 
+  def upvote
+  end
+
+  def downvote
+  end
+
   private
 
   def post_params
